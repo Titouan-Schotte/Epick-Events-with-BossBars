@@ -1,0 +1,11 @@
+name: BossBarEvent
+version: '${project.version}'
+main: fr.titoune.bossbarevent.Main
+authors: [ Tit0un3 ]
+description: Plugin to show a new event
+depend: []
+commands:
+  epickevent:
+    description: to add an event
+    usage: /epickevent <minutes> <seconds> <color> <style> "<title>" "<commandAtTheEnd>"=>OPTIONAL
+    permission: epicka.bbevent
