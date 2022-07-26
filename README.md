@@ -1,5 +1,5 @@
 # Epick-Eventss-with-BossBars
-
+![image](https://user-images.githubusercontent.com/73279480/180985926-5903c4e2-a71a-4178-87ce-fbbb20e34fb0.png)
 ## Introduction
 
 This plugin will allow you to create ephemeral events on your minecraft server using the bare bosses available in vanilla.
@@ -10,6 +10,8 @@ This plugin mainly allows you to add a timer to your events with the boss bar wh
 `VERY EASY`
 
 ![4](https://user-images.githubusercontent.com/73279480/180881609-0a696032-963f-4f96-a5fe-baa8a50305d4.png)
+
+![image](https://user-images.githubusercontent.com/73279480/180985948-33989604-74a7-4e5c-9d0d-c74e1e525962.png)
 
 
 
@@ -43,6 +45,14 @@ This plugin mainly allows you to add a timer to your events with the boss bar wh
 - SEGMENTED_10
 - SEGMENTED_12
 - SEGMENTED_20
+
+**PLACEHOLDERS :**
+- {playersCount}
+- {playersMaxCount}
+- {days}
+- {hours}
+- {minutes}
+- {minutes}
 
 
 ## Example...
