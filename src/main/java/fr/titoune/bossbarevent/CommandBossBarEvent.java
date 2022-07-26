@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import java.util.HashMap;
 
 import static fr.titoune.bossbarevent.Main.bossBarIntegerMap;
+import static org.bukkit.Bukkit.getServer;
 
 public class CommandBossBarEvent implements CommandExecutor {
 
@@ -40,19 +41,29 @@ public class CommandBossBarEvent implements CommandExecutor {
                 }
             }
 
-            title = title.replaceAll("\"", "");
+            title = title.replaceAll("\"", "").replace("&", "§");
             commandInTheEnd = commandInTheEnd.replaceAll("\"", "");
-            BossBar bar = Bukkit.getServer().createBossBar(title, BarColor.valueOf(args[2]), BarStyle.valueOf(args[3]));
+            int playerCount = 0;
+            for(Player player:getServer().getOnlinePlayers()){
+                playerCount+=1;
+            }
+            int chrono = Integer.parseInt(args[0])*60+Integer.parseInt(args[1]);
+
+            int seconds = ((chrono % 86400) % 3600) % 60,
+                    minutes = ((chrono % 86400) % 3600) / 60,
+                    hours = (chrono % 86400) / 3600 ,
+                    days = chrono / 86400;
+            BossBar bar = getServer().createBossBar(title.replaceAll("\\{playersCount\\}", ""+playerCount).replaceAll("\\{playersMaxCount\\}", ""+getServer().getMaxPlayers()).replaceAll("\\{seconds\\}", ""+seconds).replaceAll("\\{minutes\\}", ""+minutes).replaceAll("\\{hours\\}", ""+hours).replaceAll("\\{days\\}", ""+days), BarColor.valueOf(args[2]), BarStyle.valueOf(args[3]));
             bar.setVisible(true);
             bar.setProgress(1);
             for(Player player : sender.getServer().getOnlinePlayers()){
                 bar.addPlayer(player);
             }
-            int chrono = Integer.parseInt(args[0])*60+Integer.parseInt(args[1]);
+
             if(commandInTheEnd.equals("")){
-                bossBarIntegerMap.put(bar, new Object[]{chrono, chrono,false});
+                bossBarIntegerMap.put(bar, new Object[]{chrono, chrono,false,null,title});
             } else {
-                bossBarIntegerMap.put(bar, new Object[]{chrono, chrono,true,commandInTheEnd});
+                bossBarIntegerMap.put(bar, new Object[]{chrono, chrono,true,commandInTheEnd,title});
             }
             sender.sendMessage("§2Success !");
             return true;
